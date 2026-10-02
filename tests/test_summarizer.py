@@ -181,8 +181,10 @@ def test_generate_summary_groups_items_by_profile_with_heading_hierarchy():
     assert result.count("# Horizon Daily") == 1
     assert "## Technology News" in result
     assert "## Technology Blog" in result
-    assert "### [Important Item 1]" in result
-    assert "### [Important Item 2]" in result
+    assert "### Important Item 1" in result
+    assert "### Important Item 2" in result
+    assert "https://example.com/items/1" in result
+    assert "Official source" in result
 
 
 def test_generate_summary_uses_configured_profile_order():
@@ -466,6 +468,7 @@ def test_generate_summary_preserves_normal_http_links():
 
     result = _run_async(summarizer.generate_summary([item], "2026-04-25", 1))
 
-    assert "[Important Item 1](https://example.com/items/1)" in result
+    assert "### Important Item 1" in result
     assert "[Discussion](https://example.com/discuss?id=1#comments)" in result
+    assert 'class="story-action story-action--primary" href="https://example.com/items/1"' in result
     assert 'href="https://docs.example.com/path?q=one&amp;lang=en"' in result
