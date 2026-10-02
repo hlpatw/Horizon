@@ -356,6 +356,23 @@ def test_generate_summary_renumbers_interleaved_profiles_and_localizes_headings(
     assert '<a id="item-tech-blog-1"></a>' in result
 
 
+def test_generate_summary_zh_does_not_leak_english_fallback_when_artifact_missing():
+    item = _make_item(1)
+    item.processing.artifacts.pop("zh")
+    item.processing.analysis.summary = "English fallback must not appear."
+
+    result = _run_async(
+        DailySummarizer().generate_summary(
+            [item], date="2026-04-25", total_fetched=1, language="zh"
+        )
+    )
+
+    assert "本条资讯的中文解读暂未生成" in result
+    assert "中文解读生成失败，请稍后重新生成本期资讯。" in result
+    assert "English fallback must not appear." not in result
+    assert "Important Item 1" not in result
+
+
 def test_generate_empty_summary_zh_uses_localized_analyzed_line():
     summarizer = DailySummarizer()
 
