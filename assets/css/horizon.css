@@ -68,3 +68,20 @@ body:not(:has(#aihot-home)) .main-content>h3~p,body:not(:has(#aihot-home)) .main
 @media(max-width:900px){.radar-intro{grid-template-columns:1fr;gap:2.5rem;padding-top:3.8rem}.radar-signal{max-width:220px}.digest-layout{grid-template-columns:1fr}.digest-aside{display:none}.archive-list{grid-template-columns:repeat(2,1fr)}.radar-intro h1{font-size:3.2rem}}
 @media(max-width:620px){.radar-nav{height:auto;min-height:64px;padding:0 18px}.radar-actions a:first-child{display:none}.radar-intro{padding:3rem 20px 3.5rem}.radar-intro h1{font-size:2.45rem}.radar-lead{font-size:.95rem}.digest-toolbar{padding:2.5rem 20px 1.2rem;display:block}.digest-search{width:100%;margin-top:1.2rem}.digest-layout{padding:0 14px 3rem}.embedded-digest .news-card{padding:1.2rem 1rem}.archive-strip{padding:2.8rem 20px}.archive-list{grid-template-columns:1fr}.page-header{padding:4.5rem 1.2rem 2.2rem!important}.page-header .project-name{font-size:1.65rem!important}.main-content{padding:2rem 1rem 5rem;font-size:.96rem}.main-content>h3{font-size:1.16rem}.back-home{left:10px}.lang-toggle{right:10px}.radar-signal strong{font-size:2.4rem}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+/* Final readability fixes */
+.radar-intro{overflow:visible}
+.news-card details{clear:both;position:relative;z-index:2;background:#fff}
+.news-card details ul{position:relative;margin:0!important;padding:.5rem 1rem 1rem 2.2rem!important}
+.news-card .tag-line{clear:both;position:relative;z-index:3;background:#fff;padding-top:.25rem}
+.news-card h3{padding-right:3rem;position:relative}
+.news-card h3 .score-badge{position:absolute;right:0;top:.15rem}
+#digest-nav{padding-bottom:.5rem}.full-report-link{position:relative;z-index:3}
+@media(max-width:620px){
+    .radar-actions{display:none}
+    .lang-toggle button{min-width:48px;min-height:44px;font-size:.86rem}
+    .news-card h3{padding-right:0}.news-card h3 .score-badge{position:static;display:inline-flex;margin-left:.35rem}
+    .score-badge{font-size:.78rem}.source-line,.tag-line{font-size:.9rem}
+    .section-kicker,.radar-status,.radar-signal span,.radar-signal small{font-size:.86rem}
+}
