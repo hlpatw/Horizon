@@ -1,7 +1,7 @@
 theme: jekyll-theme-cayman
 title: Horizon Daily
 description: AI-curated daily digest of tech and research news
-baseurl: "/Horizon"
+baseurl: "/Horizon_AIHot"
 url: "https://hlpatw.github.io"
 
 # Build settings
