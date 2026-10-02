@@ -12,7 +12,7 @@ title: AIHOT Radar
   <header class="radar-nav">
     <a class="radar-brand" href="{{ '/' | relative_url }}" aria-label="AIHOT Radar 首页">
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 21a12 12 0 0 1 24 0"/><path d="M8 21a8 8 0 0 1 16 0"/><path d="M12 21a4 4 0 0 1 8 0"/><circle cx="16" cy="21" r="2"/></svg>
-      <span>AIHOT <b>RADAR</b></span>
+      <span>AIHOT <b>DAILY</b></span>
     </a>
     <nav class="radar-actions" aria-label="快捷操作">
       <a href="{{ '/feed-zh.xml' | relative_url }}">订阅 RSS</a>
@@ -23,13 +23,13 @@ title: AIHOT Radar
 
   <section class="radar-intro">
     <div>
-      <p class="radar-status"><span></span> 自动更新中</p>
-      <h1>把今天的 AI 变化，<br>压缩成一次有效阅读。</h1>
-      <p class="radar-lead">聚合 Hacker News、Reddit、RSS 与 GitHub，由 AI 评分、去重并补充背景。打开即读，不再绕路。</p>
+      <p class="radar-status"><span></span> 今日份已为你整理好</p>
+      <h1>早安，今天的 AI 新鲜事<br>都在这里。</h1>
+      <p class="radar-lead">从 Hacker News、Reddit、RSS 与 GitHub 中挑出真正值得看的变化。中文速读、英文原文，想浅看或深读都可以。</p>
     </div>
     {% if latest_zh %}
     <div class="radar-signal" aria-label="最新一期信息">
-      <span>最新一期</span>
+      <span>本期日期</span>
       <strong>{{ latest_zh.date | date: "%m.%d" }}</strong>
       <small>{{ latest_zh.content | strip_html | size }} 字符情报</small>
     </div>
@@ -41,7 +41,7 @@ title: AIHOT Radar
     {% if latest_zh %}
     <section class="digest-toolbar" aria-label="今日速递工具栏">
       <div>
-        <span class="section-kicker">今日速递</span>
+        <span class="section-kicker">今日精选</span>
         <h2>{{ latest_zh.date | date: "%Y 年 %m 月 %d 日" }}</h2>
       </div>
       <label class="digest-search">
@@ -57,7 +57,7 @@ title: AIHOT Radar
       </article>
       <aside class="digest-aside">
         <div class="aside-sticky">
-          <p>快速浏览</p>
+          <p>这一页</p>
           <nav id="digest-nav" aria-label="今日条目目录"></nav>
           <a class="full-report-link" href="{{ latest_zh.url | relative_url }}">独立阅读模式</a>
         </div>
