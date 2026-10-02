@@ -19,7 +19,18 @@ GROUNDING_RULES = f"""- Treat the source item as the primary account of what hap
 
 def target_language_instruction(language: str) -> str:
     if language.lower() == "zh":
-        return "Simplified Chinese (language tag `zh`)"
+        return (
+            "Simplified Chinese (language tag `zh`). Translate every ordinary "
+            "artifact title, block heading, summary, background, impact, takeaway, "
+            "and community discussion into natural Simplified Chinese. Preserve "
+            "official model names, product names, project names, company names, API "
+            "names, version strings, code identifiers, and acronyms in their "
+            "established original spelling. Do not leave a complete English sentence "
+            "in any user-facing field; rewrite it in Chinese while keeping protected "
+            "proper names unchanged. Use concise Chinese topic tags unless a tag is a "
+            "protected proper name. Before returning JSON, check every user-facing "
+            "string against these rules."
+        )
     return f"language `{language}`"
 
 
