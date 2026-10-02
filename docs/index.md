@@ -51,18 +51,31 @@ title: AIHOT Radar
     </section>
 
 
+    <div class="topic-filters" data-for="latest-digest" aria-label="资讯分类筛选">
+      <button type="button" class="active" data-filter="all">全部</button>
+      <button type="button" data-filter="product">模型与产品</button>
+      <button type="button" data-filter="dev">开发工具</button>
+      <button type="button" data-filter="research">研究</button>
+      <button type="button" data-filter="industry">行业</button>
+    </div>
+
     <div class="digest-layout">
       <article id="latest-digest" class="embedded-digest">
         {{ latest_zh.content }}
       </article>
-      <aside class="digest-aside">
-        <div class="aside-sticky">
-          <p>这一页</p>
-          <nav id="digest-nav" aria-label="今日条目目录"></nav>
-          <a class="full-report-link" href="{{ latest_zh.url | relative_url }}">独立阅读模式</a>
+      <aside class="digest-aside" aria-label="资讯详情">
+        <div id="detail-panel" class="detail-panel" aria-live="polite">
+          <div class="detail-empty">
+            <span class="detail-kicker">今日重点</span>
+            <h3>选择一条资讯，留在首页继续阅读</h3>
+            <p>点击左侧标题或卡片，这里会展示完整背景、影响、社区讨论和参考链接。</p>
+            <div id="detail-highlights" class="detail-highlights"></div>
+          </div>
         </div>
+        <a class="full-report-link" href="{{ latest_zh.url | relative_url }}">打开独立阅读模式</a>
       </aside>
     </div>
+    <div id="detail-backdrop" class="detail-backdrop" hidden></div>
     {% else %}
     <div class="empty-radar">日报生成后会直接出现在这里。</div>
     {% endif %}
@@ -81,8 +94,35 @@ title: AIHOT Radar
 
   <div id="lang-en" class="lang-section hidden">
     {% if latest_en %}
-      <section class="digest-toolbar"><div><span class="section-kicker">Latest briefing</span><h2>{{ latest_en.date | date: "%B %d, %Y" }}</h2></div></section>
-      <article class="embedded-digest">{{ latest_en.content }}</article>
+      <section class="digest-toolbar">
+        <div><span class="section-kicker">Latest briefing</span><h2>{{ latest_en.date | date: "%B %d, %Y" }}</h2></div>
+        <label class="digest-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+          <input id="digest-search-en" type="search" placeholder="Search stories, tags, or sources" autocomplete="off">
+        </label>
+      </section>
+      <div class="topic-filters" data-for="latest-digest-en" aria-label="Story filters">
+        <button type="button" class="active" data-filter="all">All</button>
+        <button type="button" data-filter="product">Models & products</button>
+        <button type="button" data-filter="dev">Developer tools</button>
+        <button type="button" data-filter="research">Research</button>
+        <button type="button" data-filter="industry">Industry</button>
+      </div>
+      <div class="digest-layout">
+        <article id="latest-digest-en" class="embedded-digest">{{ latest_en.content }}</article>
+        <aside class="digest-aside" aria-label="Story details">
+          <div id="detail-panel-en" class="detail-panel" aria-live="polite">
+            <div class="detail-empty">
+              <span class="detail-kicker">Top stories</span>
+              <h3>Select a story and keep reading here</h3>
+              <p>Choose a card to see the full context, impact, discussion, and references.</p>
+              <div id="detail-highlights-en" class="detail-highlights"></div>
+            </div>
+          </div>
+          <a class="full-report-link" href="{{ latest_en.url | relative_url }}">Open reading mode</a>
+        </aside>
+      </div>
+      <div id="detail-backdrop-en" class="detail-backdrop" hidden></div>
     {% endif %}
   </div>
 </div>
