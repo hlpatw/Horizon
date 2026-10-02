@@ -24,7 +24,7 @@ title: AIHOT Radar
   <section class="radar-intro">
     <div>
       <p class="radar-status"><span></span> 今日份已为你整理好</p>
-      <h1>早安，今天的 AI 新鲜事<br>都在这里。</h1>
+      <h1><span id="time-greeting">你好</span>，今天的 AI 新鲜事<br>都在这里。</h1>
       <p class="radar-lead">从 Hacker News、Reddit、RSS 与 GitHub 中挑出真正值得看的变化。中文速读、英文原文，想浅看或深读都可以。</p>
     </div>
     {% if latest_zh %}
