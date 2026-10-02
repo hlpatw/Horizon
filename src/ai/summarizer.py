@@ -188,7 +188,12 @@ class DailySummarizer:
                         global_index=global_index,
                         group_count=len(profile_items),
                         title=normalize_language(
-                            artifact.title if artifact else item.title, language
+                            artifact.title
+                            if artifact
+                            else "本条资讯的中文解读暂未生成"
+                            if language == "zh"
+                            else item.title,
+                            language,
                         ),
                         score=(
                             analysis.score
@@ -384,6 +389,11 @@ class DailySummarizer:
         meta = item.metadata
 
         summary = analysis.summary if not artifact and analysis else ""
+        if language == "zh" and not artifact:
+            # Never leak an English analysis fallback into the Chinese digest.
+            summary = "中文解读生成失败，请稍后重新生成本期资讯。"
+            _title = "本条资讯的中文解读暂未生成"
+            title = _escape_markdown(_title)
         primary_block = (
             next((block for block in artifact.blocks if block.primary), None)
             if artifact
