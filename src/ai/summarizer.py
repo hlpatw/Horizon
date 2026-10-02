@@ -53,6 +53,10 @@ LABELS = {
         "source": "Source",
         "background": "Background",
         "discussion": "Discussion",
+        "official_source": "Official source",
+        "community_source": "Community discussion",
+        "copy_link": "Copy link",
+        "access_note": "Some community sites may be unavailable on certain networks.",
         "references": "References",
         "tags": "Tags",
         "selected_items": "From {total} items, {selected} important content pieces were selected",
@@ -73,6 +77,10 @@ LABELS = {
         "source": "来源",
         "background": "背景",
         "discussion": "社区讨论",
+        "official_source": "查看原文",
+        "community_source": "社区讨论",
+        "copy_link": "复制链接",
+        "access_note": "部分社区网站可能因网络环境无法访问。",
         "references": "参考链接",
         "tags": "标签",
         "selected_items": "从 {total} 条内容中筛选出 {selected} 条重要资讯。",
@@ -341,6 +349,7 @@ class DailySummarizer:
                 index,
                 title_override=title,
                 score_override=score,
+                link_title=True,
             ).rstrip("-\n "),
             language,
         )
@@ -356,6 +365,7 @@ class DailySummarizer:
         anchor_id: Optional[str] = None,
         title_override: Optional[str] = None,
         score_override: float | str | None = None,
+        link_title: bool = False,
     ) -> str:
         """Format a single ContentItem into Markdown."""
         artifact = item.processing.artifacts.get(language) if item.processing else None
@@ -416,7 +426,8 @@ class DailySummarizer:
             if safe_discussion_url and str(discussion_url) != raw_url:
                 source_line += f' · [{labels["discussion"]}]({safe_discussion_url})'
 
-        title_link = f"[{title}]({url})" if url else title
+        # Web pages keep titles inside the digest; webhook messages retain compact links.
+        title_link = f"[{title}]({url})" if link_title and url else title
 
         lines = [
             f'<a id="{anchor_id or f"item-{index}"}"></a>',
@@ -427,6 +438,29 @@ class DailySummarizer:
         if primary_content.strip():
             lines.extend(["", primary_content])
         lines.extend(["", source_line])
+
+        link_actions = []
+        if url and not link_title:
+            is_community_url = item.source_type.value in {"reddit", "hackernews"}
+            action_label = (
+                labels["community_source"]
+                if is_community_url
+                else labels["official_source"]
+            )
+            link_actions.append(
+                f'<a class="story-action story-action--primary" href="{url}" '
+                f'target="_blank" rel="noopener noreferrer">{action_label}</a>'
+            )
+            link_actions.append(
+                f'<button class="copy-story-link" type="button" data-copy-url="{url}">'
+                f'{labels["copy_link"]}</button>'
+            )
+            if is_community_url:
+                link_actions.append(
+                    f'<span class="story-access-note">{labels["access_note"]}</span>'
+                )
+        if link_actions:
+            lines.extend(["", '<div class="story-actions">' + "".join(link_actions) + "</div>"])
 
         if artifact:
             for block in artifact.blocks:
@@ -446,7 +480,10 @@ class DailySummarizer:
                 reference_title = html.escape(source.title, quote=True)
                 reference_url = _safe_url(source.url)
                 if reference_url:
-                    reference_items.append(f'<li><a href="{reference_url}">{reference_title}</a></li>\n')
+                    reference_items.append(
+                        f'<li><a href="{reference_url}" target="_blank" '
+                        f'rel="noopener noreferrer">{reference_title}</a></li>\n'
+                    )
                 else:
                     reference_items.append(f"<li>{reference_title}</li>\n")
             items_html = "".join(reference_items)
