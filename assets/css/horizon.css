@@ -85,3 +85,11 @@ body:not(:has(#aihot-home)) .main-content>h3~p,body:not(:has(#aihot-home)) .main
     .score-badge{font-size:.78rem}.source-line,.tag-line{font-size:.9rem}
     .section-kicker,.radar-status,.radar-signal span,.radar-signal small{font-size:.86rem}
 }
+
+
+html,body{max-width:100%;overflow-x:hidden}
+body:has(#aihot-home)>.site-footer{display:none!important}
+body:not(:has(#aihot-home)) .page-header .project-name{font-size:0!important}
+body:not(:has(#aihot-home)) .page-header .project-name:after{content:"AIHOT 每日情报";font-size:2.2rem}
+body:not(:has(#aihot-home)) .page-header .project-tagline{font-size:0!important}
+body:not(:has(#aihot-home)) .page-header .project-tagline:after{content:"AI 筛选 · 去重 · 背景补充";font-size:1rem}
