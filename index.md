@@ -85,4 +85,4 @@ title: AIHOT Radar
       <article class="embedded-digest">{{ latest_en.content }}</article>
     {% endif %}
   </div>
-</div>Enter file contents here
+</div>
