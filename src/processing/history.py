@@ -15,10 +15,15 @@ from urllib.parse import urldefrag
 logger = logging.getLogger(__name__)
 
 _FILENAME = re.compile(r"^horizon-(\d{4}-\d{2}-\d{2})(?:-.*)?\.md$")
-# Older digests use H2 for news; Profile-grouped digests use H3.
+# Older digests link story titles; current web digests keep titles in-page and
+# render the original URL as a secondary story action.
 _ITEM = re.compile(
-    r"^#{2,3} \[((?:\\.|[^\\\]])+)\]\((https?://\S+)\)[^\n]*\n",
+    r"^#{2,3} (?:(?:\[((?:\\.|[^\\\]])+)\]\((https?://\S+)\))|(.+?))\s+⭐️[^\n]*\n",
     re.MULTILINE,
+)
+_STORY_URL = re.compile(
+    r'<a class="story-action[^"\n]*" href="(https?://[^"\n]+)"',
+    re.IGNORECASE,
 )
 _TAGS = re.compile(r"^\*\*(?:Tags|标签)\*\*[:：]\s*(.*)$", re.MULTILINE)
 _WORDS = re.compile(r"[a-z0-9]+(?:\.[a-z0-9]+)*[+#]*|[\u3400-\u9fff]+")
@@ -80,7 +85,15 @@ def _read_entries(directory: Path) -> list[HistoryEntry]:
             # previous history callbacks, comments, and reference lists.
             if summary.startswith(("#", "<", "*")) or re.match(r"^[a-z_]+ · ", summary):
                 summary = ""
-            title, url = _plain_text(heading[1]), html.unescape(heading[2])
+            linked_title, linked_url, plain_title = heading.groups()
+            title = _plain_text(linked_title or plain_title or "")
+            if linked_url:
+                url = html.unescape(linked_url)
+            else:
+                story_url = _STORY_URL.search(body)
+                if not story_url:
+                    continue
+                url = html.unescape(story_url[1])
             summary = _plain_text(summary)
             tags = " ".join(_TAGS.findall(body))
             terms = Counter(_tokenize(f"{title} {title} {summary} {tags}"))
