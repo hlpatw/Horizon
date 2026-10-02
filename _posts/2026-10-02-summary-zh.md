@@ -191,9 +191,9 @@ hackernews · rafaelc · 10月1日 20:23 · [社区讨论](https://news.ycombina
 ---
 
 <a id="item-tech-news-6"></a>
-### Pi Durable ⭐️ 7.0/10
+### Pi Durable：耐用代理框架及其行业影响 ⭐️ 7.0/10
 
-An analysis of Pi Durable, a durable agent harness, and its implications for the technology industry.
+本文分析 Pi Durable 这一耐用代理框架，并评估它对技术行业可能产生的影响。
 
 hackernews · paulsmith · 10月1日 19:24 · [社区讨论](https://news.ycombinator.com/item?id=49925969)
 
@@ -204,9 +204,9 @@ hackernews · paulsmith · 10月1日 19:24 · [社区讨论](https://news.ycombi
 ---
 
 <a id="item-tech-news-7"></a>
-### Git 3.0&\#x27;s upcoming SHA-256 default will be a costly mistake ⭐️ 7.0/10
+### Git 3.0 默认采用 SHA-256 可能带来高昂成本
 
-A discussion on the potential implications of Git 3.0&\#x27;s defaulting to SHA-256, with community debate highlighting technical and political considerations.
+社区讨论了 Git 3.0 默认采用 SHA-256 的潜在影响，争议集中在技术成本与治理考量。
 
 hackernews · chmaynard · 10月1日 16:57 · [社区讨论](https://news.ycombinator.com/item?id=49924179)
 
@@ -217,9 +217,9 @@ hackernews · chmaynard · 10月1日 16:57 · [社区讨论](https://news.ycombi
 ---
 
 <a id="item-tech-news-8"></a>
-### RIP, vector database ⭐️ 7.0/10
+### 向量数据库将走向何方：架构演进与替代方案 ⭐️ 7.0/10
 
-Community discussion on the evolution and challenges of vector databases, with insights into alternative solutions and design patterns.
+社区围绕向量数据库的演进与挑战展开讨论，并梳理了替代方案和设计模式。
 
 hackernews · razin · 10月1日 16:01 · [社区讨论](https://news.ycombinator.com/item?id=49923466)
 
@@ -261,9 +261,9 @@ hackernews · nkw · 10月1日 15:07 · [社区讨论](https://news.ycombinator.
 ---
 
 <a id="item-tech-news-10"></a>
-### Cloudflare K2: serverless event streams ⭐️ 7.0/10
+### Cloudflare K2：无服务器事件流服务 ⭐️ 7.0/10
 
-Cloudflare&\#x27;s K2 serverless event streams are evaluated as high-value due to their potential impact on serverless and event-driven architectures.
+Cloudflare K2 无服务器事件流可能对无服务器与事件驱动架构产生显著影响，因此具有较高关注价值。
 
 hackernews · elffjs · 10月1日 14:09 · [社区讨论](https://news.ycombinator.com/item?id=49921923)
 
@@ -305,9 +305,9 @@ rss · Simon Willison · 10月1日 06:29
 ---
 
 <a id="item-tech-news-12"></a>
-### LLMs that push back on a wrong user still accept the same wrong answer from a &quot;verified source&quot; - NeurIPS 2026 \[R\] ⭐️ 7.0/10
+### LLM 会拒绝用户的错误答案，却可能接受“可信来源”的同一错误——NeurIPS 2026 研究
 
-A study reveals that language models exhibit &\#x27;Authority Bias&\#x27;, accepting incorrect answers when presented from a &\#x27;verified source&\#x27;.
+研究发现，语言模型存在“权威偏差”：当错误答案被包装为来自“可信来源”时，模型更可能接受它。
 
 reddit · r/MachineLearning · /u/MajorRedditor23 · 10月1日 14:45
 
@@ -344,9 +344,9 @@ reddit · r/MachineLearning · /u/manicman1999 · 10月2日 04:02
 ---
 
 <a id="item-tech-news-14"></a>
-### Gemini 4 Argon - 1 Million Output Headroom. Hype or a Leap? \[D\] ⭐️ 7.0/10
+### Gemini 4 Argon 的百万级输出空间：炒作还是跨越？
 
-The article discusses the potential impact of Gemini 4 Argon&\#x27;s 1 million output headroom on machine learning tasks, inviting expert opinions on its practical significance.
+文章讨论 Gemini 4 Argon 百万级输出空间对机器学习任务的潜在影响，并邀请专家评估其实际价值。
 
 reddit · r/MachineLearning · /u/minimanishtic · 10月1日 10:12
 
